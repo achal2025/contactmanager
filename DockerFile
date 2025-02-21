@@ -1,0 +1,22 @@
+
+# Use an official OpenJDK runtime as a parent image
+FROM openjdk:17-jdk-slim
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the built JAR file into the container
+COPY target/contact-manager-0.0.1-SNAPSHOT.jar app.jar
+
+
+
+# Set environment variables for PostgreSQL connection
+ENV SPRING_DATASOURCE_URL=jdbc:postgresql://dpg-curf5iqj1k6c73arnc4g-a.oregon-postgres.render.com:5432/smartcontact_8n0h
+ENV SPRING_DATASOURCE_USERNAME=smartcontact_8n0h_user
+ENV SPRING_DATASOURCE_PASSWORD=n04OTU5gG5q8NX6yJHeh9BLQcqkgJKXt
+
+# Expose the application's port
+EXPOSE 8080
+
+# Run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]
