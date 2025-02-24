@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="css/home.css">
+	<link rel="stylesheet" href="css/footer2.css">
+	<meta charset="ISO-8859-1">
+	<title>Add Contact</title>
+
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        
+		
+</head>
+<body>
+
+	<br><br>
+	<div class="container" align="center"  >
+		<div class="card2" >
+			<div class="card-body" style="color: #696969;">
+				<h2 class="card-title" id="res"><b>Contact Plus -v2.3</b></h2>
+			</h3>
+			<hr>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="col-md-12">
+			<div class="page-people-directory">
+				<div class="row">
+					<div class="col-md-3">
+						<h4 class="page-title"><b>Contacts</b></h4>
+						<ul class="nav nav-pills nav-stacked nav-contacts">
+							<li>
+								<a th:href="@{/home}">
+									All Contacts
+									<span class="badge pull-right" th:text="${totalContacts}"></span>
+								</a>
+							</li>
+							<li class="active">
+								<a th:href="@{/addContact}">
+									Add Contact
+									
+								</a>
+							</li>
+							<li>
+								<a th:href="@{/profile}">
+									My Profile
+									<span class="badge pull-right"></span>
+								</a>
+							</li>
+							<li>
+								<a th:href="@{/logout}">
+									Exit
+									
+								</a>
+							</li>
+						</ul>
+						
+						<br>
+						
+						<h4><b>My Favorites</b></h4>
+						<div class="list-group people-group">
+							<tr th:each="contact: ${favourites}">
+								<a th:href="@{/search(param=${contact.name})}" class="list-group-item">
+									<div class="media">
+										<div class="pull-left">
+											<img class="avatar3" th:src="@{'data:image/jpg;base64,'+ ${contact.image}}" alt="...">
+										</div>
+										<div class="media-body">
+											<h4 class="media-heading" th:text="${contact.name}"></h4>
+											<small th:text="${contact.position}"></small>
+										</div>
+									</div>
+								</a>
+							</tr>
+						</div>
+						
+					</div>
+					<div class="col-md-9">
+						
+						<br>
+						<div class="row">
+							<div class="col-md-6">
+								<h3>Add Contact</h3>
+							</div>
+							
+						</div>
+						
+						<div class="list-group contact-group">
+						
+						
+						<form th:action="@{/addContact}" th:object="${newContact}" method="post" enctype="multipart/form-data">
+		                    <div class="form-row">
+		
+								<div class="col-md-4 mb-4">
+									<label style="margin-top: 0.5em;">Name: </label><br>
+									<input style="margin-top: 0.2em; margin-bottom: 0.5em;" type="text" name='name' th:field="*{name}" class="form-control" placeholder="First name" 
+									required>
+								</div>
+		
+								<div class="col-md-4 mb-3">
+		                            <label style="margin-top: 0.5em;" for="validationCustom01">Gender: </label>
+		                            <input style="margin-top: 0.2em; margin-bottom: 0.5em;" type="text" name='gender' th:field="*{gender}" class="form-control" id="validationCustom01" placeholder="Gender"
+		                                 required>
+		                        </div>
+		                        <div class="col-md-4 mb-3">
+		                            <label style="margin-top: 0.5em;" for="validationCustom01">Email: </label>
+		                            <input style="margin-top: 0.2em; margin-bottom: 0.5em;" type="email" name='email' th:field="*{email}" class="form-control" id="validationCustom01" placeholder="Email"
+		                                 required>
+		                        </div>
+		                        <div class="col-md-4 mb-3">
+		                            <label style="margin-top: 0.5em;" for="validationCustom01">Position: </label>
+		                            <input style="margin-top: 0.2em; margin-bottom: 0.5em;" type="text" name='position' th:field="*{position}" class="form-control" id="validationCustom01" placeholder="Position"
+		                                 required>
+		                        </div>
+		                        <div class="col-md-4 mb-3">
+		                            <label style="margin-top: 0.5em;" for="validationCustom02">Phone:</label>
+		                            <input style="margin-top: 0.2em; margin-bottom: 0.5em;" type="tel" name='phone' th:field="*{phone}" class="form-control" id="validationCustom02" placeholder="Phone"
+		                                 required>
+		                        </div>
+		                        <div class="col-md-4 mb-3">
+		                            <label style="margin-top: 0.5em;" for="validationCustom03">Cover pic:</label>
+		                            <input style="margin-top: 0.2em; margin-bottom: 0.5em; " type="file" name='image12' class="form-control" accept="image/png, image/jpeg, image/jpg" id="validationCustom03" placeholder="Cover image" >
+		                        </div>
+		                        
+		                        <div class="col-md-4 mb-3">
+		                        	<label style="margin-top: 0.5em;" class="form-check-label" for="flexCheckChecked">Favourite:</label>
+									<input style="margin-top: 0.2em; margin-bottom: 0.5em;" class="form-check-input" name="favourite" th:field="*{favourite}" type="checkbox" value="1" id="flexCheckChecked" checked>
+									
+								</div>
+		                        
+		                        <div class="col-md-10 mb-3">
+		                            <label style="margin-top: 0.5em;" for="validationCustom02">Address:</label>
+		                            <textarea inputmode="text" style="margin-top: 0.2em; margin-bottom: 0.5em;" class="form-control" name='address' th:field="*{address}" id="exampleFormControlTextarea1" rows="3"></textarea>
+		                        </div>
+		
+		
+		                    	
+        					
+        						<div class='col-md-10 mb-3'><br><br>
+                    				<button style="margin-top: 0.5em; margin-bottom: 0.5em; color: white;" type="submit" name="submit" class="btn btn-lg button1">Submit</button><br><br><br><br><br>
+								</div>
+		                        
+		                        
+		                        
+		                    </div>
+                    
+		                    
+                		</form>
+						
+						
+												
+							
+																								
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+	
+	<!------ Include the above in your HEAD tag ---------->
+
+	<!-- Footer -->
+	<section id="footer">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-xs-12 ">
+					<ul class="list-unstyled list-inline social text-center">
+						<li class="list-inline-item"><a
+							href="https://github.com/Nawaz2000"><i class="fa fa-github"></i></a></li>
+						<li class="list-inline-item"><a
+							href="https://www.linkedin.com/in/md-nawaz-rahaman-047b56177/"><i
+								class="fa fa-linkedin"></i></a></li>
+						<li class="list-inline-item"><a
+							href="https://www.instagram.com/doodle_nawaz/"><i
+								class="fa fa-instagram"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i
+								class="fa fa-google-plus"></i></a></li>
+						<li class="list-inline-item"><a
+							href="mailto:mail2nawaz2000@gmail.com" target="_blank"><i
+								class="fa fa-envelope"></i></a></li>
+					</ul>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div
+					class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+					<p class="h5">
+						&copy; 2021 All right Reversed. <a class="text-green ml-2"
+							href="https://github.com/Nawaz2000" target="_blank">Md. Nawaz
+							Rahaman</a>
+					</p>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+	<!-- ./Footer -->
+
+</body>
+</html>

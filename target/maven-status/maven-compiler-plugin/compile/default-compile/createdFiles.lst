@@ -1,0 +1,14 @@
+com\nawaz2000\contactmanager\service\MyUserDetailService.class
+com\nawaz2000\contactmanager\entity\Contact.class
+com\nawaz2000\contactmanager\dao\ContactStorageService.class
+com\nawaz2000\contactmanager\dao\UserRepository.class
+com\nawaz2000\contactmanager\entity\User.class
+com\nawaz2000\contactmanager\controller\RegistrationController.class
+com\nawaz2000\contactmanager\entity\ContactDetails.class
+com\nawaz2000\contactmanager\dao\ContactRepository.class
+com\nawaz2000\contactmanager\service\MyUserPrincipal.class
+com\nawaz2000\contactmanager\ContactManagerApplication.class
+com\nawaz2000\contactmanager\dao\UserStorageService.class
+com\nawaz2000\contactmanager\controller\LoginController.class
+com\nawaz2000\contactmanager\controller\HomeController.class
+com\nawaz2000\contactmanager\security\SecurityConfig.class
